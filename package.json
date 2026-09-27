@@ -1,0 +1,40 @@
+{
+  "name": "posture-coach",
+  "productName": "Posture Coach",
+  "version": "0.1.0",
+  "description": "Webcam posture coach that runs entirely on your computer.",
+  "main": "./out/main/index.js",
+  "author": "Neerav",
+  "license": "MIT",
+  "private": true,
+  "homepage": "https://nrvm94.github.io/posture-coach/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nrvm94/posture-coach.git"
+  },
+  "scripts": {
+    "postinstall": "node node_modules/electron/install.js && node scripts/fetch-models.mjs",
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "build:web": "vite build -c vite.web.config.ts",
+    "dist:win": "electron-vite build && electron-builder --win --publish never",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@mediapipe/tasks-vision": "1.0.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "electron": "^44.4.5",
+    "electron-builder": "^26.17.0",
+    "electron-vite": "^5.0.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.6",
+    "vitest": "^4.1.11"
+  }
+}

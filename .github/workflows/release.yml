@@ -1,0 +1,27 @@
+# Builds the Windows installer from the public source and attaches it to a GitHub Release
+# whenever a version tag (v0.1.0, v0.2.0, ...) is pushed.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run dist:win
+      - uses: softprops/action-gh-release@v3
+        with:
+          files: dist/*.exe
+          generate_release_notes: true
